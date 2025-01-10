@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <!-- Outer outline -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="#26A69A"/>
+                    <size android:width="27dp" android:height="27dp"/>
+                </shape>
+            </item>
+            <!-- Inner circle with white stroke -->
+            <item android:top="3dp" android:bottom="3dp" android:left="3dp" android:right="3dp">
+                <shape android:shape="oval">
+                    <solid android:color="#26A69A"/>
+                    <stroke android:color="#FFFFFFFF" android:width="5dp"/>
+                    <size android:width="26dp" android:height="26dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GameWithDotz"
+        tools:targetApi="31">
+        <activity
+            android:name=".Opening"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UnlimitedGame"
+            android:exported="false" />
+        <activity
+            android:name=".DuelGameOver"
+            android:exported="false"
+            android:theme="@style/GameOver" />
+        <activity
+            android:name=".DuelTimeSettings"
+            android:exported="false"
+            android:theme="@style/PopS" />
+        <activity
+            android:name=".DuelScoreSettings"
+            android:exported="false"
+            android:theme="@style/PopS" />
+        <activity
+            android:name=".GameDotzDuel"
+            android:exported="false" />
+        <activity
+            android:name=".GameOver"
+            android:exported="false"
+            android:theme="@style/GameOver" />
+        <activity
+            android:name=".DuelPlay"
+            android:exported="false" />
+        <activity
+            android:name=".SeeScores"
+            android:exported="false" />
+        <activity
+            android:name=".ScoreSettings"
+            android:exported="false"
+            android:theme="@style/PopS" />
+        <activity
+            android:name=".TimeSettings"
+            android:exported="false"
+            android:theme="@style/PopS" />
+        <activity
+            android:name=".GameWithDotz"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_game_with_dotz"
+            android:theme="@style/Theme.GameWithDotz.Fullscreen" />
+        <activity
+            android:name=".HowToPlay"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_how_to_play"
+            android:theme="@style/Theme.GameWithDotz.Fullscreen" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DotzDuel"
+            android:exported="false" />
+        <activity
+            android:name=".SoloGame"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

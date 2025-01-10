@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/htp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#61BF9D"
+    tools:context=".HowToPlay">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/leaguespartan"
+        android:text="How To Play"
+        android:textColor="#FFFFFF"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="goBack"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginBottom="8dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.64">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Add your horizontally scrollable content here -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="75dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="220dp"
+                    android:layout_height="320dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="15dp"
+                    app:cardBackgroundColor="#61BF9D"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp" >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/dot"
+                        android:layout_marginHorizontal="80dp"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:fontFamily="@font/leaguespartan"
+                        android:textSize="30sp"
+                        android:textColor="#FFFFFF"
+                        android:text="The White Dot adds 1 point to your score"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                android:layout_marginHorizontal="10dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="220dp"
+                    android:layout_height="320dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="15dp"
+                    app:cardBackgroundColor="#61BF9D"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp" >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/specialdot_green"
+                        android:layout_marginHorizontal="80dp"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="110dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:fontFamily="@font/leaguespartan"
+                        android:textSize="30sp"
+                        android:textColor="#FFFFFF"
+                        android:text="The Green Dot adds points depending on the number inside to your score"/>                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                android:layout_marginHorizontal="10dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="220dp"
+                    android:layout_height="320dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="15dp"
+                    app:cardBackgroundColor="#61BF9D"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp" >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/specialdot_red"
+                        android:layout_marginHorizontal="80dp"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="130dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:fontFamily="@font/leaguespartan"
+                        android:textSize="30sp"
+                        android:textColor="#FFFFFF"
+                        android:text="The Red Dot costs points depending on the number inside from your score"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="70dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="220dp"
+                    android:layout_height="320dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="15dp"
+                    app:cardBackgroundColor="#61BF9D"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp" >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/specialdot_blue"
+                        android:layout_marginHorizontal="80dp"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:fontFamily="@font/leaguespartan"
+                        android:textSize="27sp"
+                        android:textColor="#FFFFFF"
+                        android:text="The Blue Dot costs points depending on the number inside from your OPPONENT's score"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Add more items as needed -->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

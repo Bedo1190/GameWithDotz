@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#61BF9D"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/PlayBtn"
+        android:layout_width="159dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="152dp"
+        android:background="#009688"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="soloPlay"
+        android:outlineAmbientShadowColor="#3F51B5"
+        android:text="Play"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/SettingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="428dp"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="openSettings"
+        android:text="Settings"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/DuelBtn"
+        android:layout_width="154dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="248dp"
+        android:background="#009688"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="dotzDuel"
+        android:text="Duel"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/ScoreBtn"
+        android:layout_width="154dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="348dp"
+        android:background="#009688"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="seeScores"
+        android:text="Scores"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/HtPBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="504dp"
+        android:fontFamily="@font/leaguespartan"
+        android:onClick="howToPlay"
+        android:text="How To Play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/leaguespartan"
+        android:text="GameWithDotz"
+        android:textColor="#FFFFFF"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.120000005" />
+
+    <com.example.gamewithdotz.DotView
+        android:translationZ="-10dp"
+        android:id="@+id/dotView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
