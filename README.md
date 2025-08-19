@@ -1,4 +1,4 @@
-# 🎯 GameWithDotz – Tap, Score, Compete!
+# 🎯 GameWithDotz
 
 **GameWithDotz** is an Android mobile game that challenges players to tap dots for points, with special dots affecting the score in unique ways. It offers both solo and competitive multiplayer (Duel) modes, along with customizable settings for time, score, and sound.
 
