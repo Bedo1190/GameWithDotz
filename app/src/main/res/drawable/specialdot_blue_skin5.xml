@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+
+            <!-- soft halo -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="#3301BDF3"/> <!-- translucent cyan halo -->
+                    <size android:width="72dp" android:height="72dp"/>
+                </shape>
+            </item>
+
+            <!-- outer thin ring -->
+            <item android:top="6dp" android:left="6dp" android:right="6dp" android:bottom="6dp">
+                <shape android:shape="oval">
+                    <solid android:color="#00000000"/>
+                    <stroke android:width="3dp" android:color="#017FA6"/>
+                    <size android:width="60dp" android:height="60dp"/>
+                </shape>
+            </item>
+
+            <!-- glossy cyan center -->
+            <item android:top="10dp" android:left="10dp" android:right="10dp" android:bottom="10dp">
+                <shape android:shape="oval">
+                    <gradient
+                        android:angle="270"
+                        android:startColor="#E8F9FF"
+                        android:centerColor="#01BDF3"
+                        android:endColor="#0195C9"
+                        android:type="linear" />
+                    <size android:width="48dp" android:height="48dp"/>
+                </shape>
+            </item>
+
+            <!-- highlight -->
+            <item android:top="12dp" android:left="18dp" android:right="18dp" android:bottom="28dp">
+                <shape android:shape="oval">
+                    <solid android:color="#66FFFFFF"/>
+                    <size android:width="18dp" android:height="10dp"/>
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

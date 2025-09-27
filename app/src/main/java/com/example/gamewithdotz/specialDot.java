@@ -26,6 +26,9 @@ public class specialDot extends View {
     private int dotNumber;
     private Paint textPaint;
 
+    // keep track of which resource id is used for the current drawable (helps tag decisions)
+    private int currentDrawableResId = -1;
+
     public specialDot(Context context) {
         super(context);
         init(context);
@@ -54,28 +57,103 @@ public class specialDot extends View {
             gameDotzDuel = (GameDotzDuel) context;
         }
 
-        Drawable dotDrawableGreen = ContextCompat.getDrawable(context, R.drawable.specialdot_green);
-        Drawable dotDrawableBlue = ContextCompat.getDrawable(context, R.drawable.specialdot_blue);
-        Drawable dotDrawableRed = ContextCompat.getDrawable(context, R.drawable.specialdot_red);
-        Drawable dotDrawable = ContextCompat.getDrawable(context, R.drawable.dot);
+        // Read saved skin resource ids from the same prefs keys you used in Customize
+        SharedPreferences prefs = context.getSharedPreferences("customize_prefs", Context.MODE_PRIVATE);
+        int savedBaseRes = prefs.getInt("savedBaseDot", -1);
+        int savedGreenRes = prefs.getInt("savedGreenDot", -1);
+        int savedRedRes = prefs.getInt("savedRedDot", -1);
+        int savedBlueRes = prefs.getInt("savedBlueDot", -1);
+
+        // Fallback resource ids (same defaults as original code)
+        final int fallbackGreenRes = R.drawable.specialdot_green;
+        final int fallbackRedRes = R.drawable.specialdot_red;
+        final int fallbackBlueRes = R.drawable.specialdot_blue;
+        final int fallbackBaseRes = R.drawable.dot;
+
+        // Resolve the actual resource ids to use (saved or fallback)
+        final int resGreenToUse = (savedGreenRes != -1) ? savedGreenRes : fallbackGreenRes;
+        final int resRedToUse   = (savedRedRes   != -1) ? savedRedRes   : fallbackRedRes;
+        final int resBlueToUse  = (savedBlueRes  != -1) ? savedBlueRes  : fallbackBlueRes;
+        final int resBaseToUse  = (savedBaseRes  != -1) ? savedBaseRes  : fallbackBaseRes;
+
+        // Load drawables from resolved resource ids
+        Drawable dotDrawableGreen = ContextCompat.getDrawable(context, resGreenToUse);
+        Drawable dotDrawableBlue = ContextCompat.getDrawable(context, resBlueToUse);
+        Drawable dotDrawableRed = ContextCompat.getDrawable(context, resRedToUse);
+        Drawable dotDrawable = ContextCompat.getDrawable(context, resBaseToUse);
 
         Random random = new Random();
         dotNumber = random.nextInt(10) + 1;
 
         if (gameDotzDuel != null) {
-            Drawable[] drawables = {dotDrawableGreen, dotDrawableRed, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawableBlue};
-            currentDrawable = drawables[random.nextInt(drawables.length)];
+            Drawable[] drawables = {
+                    dotDrawableGreen,
+                    dotDrawableRed,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawableBlue
+            };
+            int idx = random.nextInt(drawables.length);
+            currentDrawable = drawables[idx];
+
+            // set corresponding resource id for tag logic
+            // match by index to the resolved res ids
+            if (currentDrawable == dotDrawableGreen) {
+                currentDrawableResId = resGreenToUse;
+            } else if (currentDrawable == dotDrawableRed) {
+                currentDrawableResId = resRedToUse;
+            } else if (currentDrawable == dotDrawableBlue) {
+                currentDrawableResId = resBlueToUse;
+            } else {
+                currentDrawableResId = resBaseToUse;
+            }
         } else {
-            Drawable[] drawables = {dotDrawableGreen, dotDrawableGreen, dotDrawableRed, dotDrawableRed, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable, dotDrawable};
-            currentDrawable = drawables[random.nextInt(drawables.length)];
+            Drawable[] drawables = {
+                    dotDrawableGreen,
+                    dotDrawableGreen,
+                    dotDrawableRed,
+                    dotDrawableRed,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable,
+                    dotDrawable
+            };
+            int idx = random.nextInt(drawables.length);
+            currentDrawable = drawables[idx];
+
+            if (currentDrawable == dotDrawableGreen) {
+                currentDrawableResId = resGreenToUse;
+            } else if (currentDrawable == dotDrawableRed) {
+                currentDrawableResId = resRedToUse;
+            } else {
+                currentDrawableResId = resBaseToUse;
+            }
+        }
+
+        // Safety fallback: if somehow currentDrawable is null, use base drawable
+        if (currentDrawable == null) {
+            currentDrawable = dotDrawable;
+            currentDrawableResId = resBaseToUse;
         }
 
         setBackground(currentDrawable);
-        if (currentDrawable == dotDrawableGreen) {
+
+        // Set tags based on the resolved resource id (so saved custom skins map correctly)
+        if (currentDrawableResId == resGreenToUse) {
             setTag("green");
-        } else if (currentDrawable == dotDrawableRed) {
+        } else if (currentDrawableResId == resRedToUse) {
             setTag("red");
-        } else if (currentDrawable == dotDrawableBlue) {
+        } else if (currentDrawableResId == resBlueToUse) {
             setTag("blue");
         } else {
             setTag("normal");
@@ -89,7 +167,7 @@ public class specialDot extends View {
 
         // Retrieve saved volume from SharedPreferences
         SharedPreferences sharedPreferences = context.getSharedPreferences("SettingsPreferences", Context.MODE_PRIVATE);
-        int savedVolume = sharedPreferences.getInt("prevVolume", 50); // Default to 50 if not set
+        int savedVolume = sharedPreferences.getInt("volume", 50); // Default to 50 if not set
         final float volume;
         if (savedVolume == 0) {
             volume = 0;

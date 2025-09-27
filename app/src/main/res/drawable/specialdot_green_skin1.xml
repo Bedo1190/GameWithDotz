@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <!-- background gradient circle -->
+            <item>
+                <shape android:shape="oval">
+                    <gradient
+                        android:angle="270"
+                        android:startColor="#EDF9F4"
+                        android:centerColor="#1D8465"
+                        android:endColor="#135E4A"
+                        android:type="linear"/>
+                    <size android:width="56dp" android:height="56dp"/>
+                </shape>
+            </item>
+
+            <!-- inner white inset to create a thin ring effect -->
+            <item android:top="4dp" android:left="4dp" android:right="4dp" android:bottom="4dp">
+                <shape android:shape="oval">
+                    <solid android:color="#FFFFFFFF"/>
+                    <size android:width="48dp" android:height="48dp"/>
+                </shape>
+            </item>
+
+            <!-- tiny teal center for emphasis -->
+            <item android:top="12dp" android:left="12dp" android:right="12dp" android:bottom="12dp">
+                <shape android:shape="oval">
+                    <solid android:color="#1D8465"/>
+                    <size android:width="32dp" android:height="32dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

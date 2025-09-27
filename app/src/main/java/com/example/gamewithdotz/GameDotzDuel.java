@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,7 +40,8 @@ public class GameDotzDuel extends AppCompatActivity {
 
     boolean scoreGameOverTriggered = false;
 
-    int musicVolume; // To store the passed music volume
+    int musicVolume;
+    boolean isMusicMuted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +54,19 @@ public class GameDotzDuel extends AppCompatActivity {
             return insets;
         });
 
-        // Get musicVolume from Intent
-        musicVolume = getIntent().getIntExtra("musicVolume", 50); // Default to 50 if not set
+        // Load saved preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("SettingsPreferences", MODE_PRIVATE);
+        musicVolume = sharedPreferences.getInt("musicVolume", 50);
+        isMusicMuted = sharedPreferences.getBoolean("isMusicMuted", false);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.gamewithdotztheme);
         mediaPlayer.setLooping(true);
-        setMediaPlayerVolume(musicVolume);
+
+        if (isMusicMuted) {
+            setMediaPlayerVolume(0);
+        } else {
+            setMediaPlayerVolume(musicVolume);
+        }
 
         mediaPlayer.start();
 
@@ -90,8 +99,12 @@ public class GameDotzDuel extends AppCompatActivity {
     }
 
     private void setMediaPlayerVolume(int volume) {
-        float log1 = (float) (1 - (Math.log(101 - volume) / Math.log(101)));
-        mediaPlayer.setVolume(log1, log1);
+        if (volume == 0) {
+            mediaPlayer.setVolume(0f, 0f);
+        } else {
+            float log1 = (float) (1 - (Math.log(101 - volume) / Math.log(101)));
+            mediaPlayer.setVolume(log1, log1);
+        }
     }
 
     private final Runnable updateTimeTask = new Runnable() {
@@ -152,13 +165,11 @@ public class GameDotzDuel extends AppCompatActivity {
             return;
         }
 
-        // Get display metrics to get the screen dimensions
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
         int screenHeight = displayMetrics.heightPixels;
 
-        // Find the CardView and get its boundaries
         cardView = findViewById(R.id.DuelLabel);
         int[] location = new int[2];
         cardView.getLocationOnScreen(location);
@@ -167,25 +178,21 @@ public class GameDotzDuel extends AppCompatActivity {
 
         specialDot dotView = new specialDot(this, screenHeight / 2);
 
-        // Define the boundaries excluding the CardView
         int topBoundary = 200;
         int bottomBoundary = screenHeight - 200;
 
-        // Measure the dot view to ensure correct width and height
         dotView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int dotWidth = dotView.getMeasuredWidth();
         int dotHeight = dotView.getMeasuredHeight();
 
-        // Random position within the screen bounds
         Random random = new Random();
         int left = random.nextInt(screenWidth - dotWidth);
         int top;
 
         do {
             top = topBoundary + random.nextInt(bottomBoundary - topBoundary - dotHeight);
-        } while (top > cardViewTop-dotHeight && top < cardViewBottom);
+        } while (top > cardViewTop - dotHeight && top < cardViewBottom);
 
-        // Set the position of the dot view
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -194,21 +201,17 @@ public class GameDotzDuel extends AppCompatActivity {
         params.topMargin = top;
         dotView.setLayoutParams(params);
 
-        // Add the dot view to the parent layout
         gdd.addView(dotView);
 
-        // Set the dot's translationX and translationY to position it correctly
         dotView.setTranslationX(left);
         dotView.setTranslationY(top);
 
-        // Schedule the removal of the dot after 1500 milliseconds
         handler.postDelayed(() -> {
             if (!scoreGameOverTriggered) {
                 gdd.removeView(dotView);
             }
         }, 1500);
 
-        // Check if the score has reached the settedScore and the game over flag is not triggered
         if (score1 >= settedScore && !scoreGameOverTriggered) {
             scoreGameOverTriggered = true;
             handler.removeCallbacks(addDotsTask);
@@ -222,7 +225,7 @@ public class GameDotzDuel extends AppCompatActivity {
     }
 
     public void incrementScoreP1() {
-        incrementScoreP1By(1); // Default increment by 1
+        incrementScoreP1By(1);
     }
 
     public void incrementScoreP1By(int increment) {
@@ -236,7 +239,7 @@ public class GameDotzDuel extends AppCompatActivity {
     }
 
     public void incrementScoreP2() {
-        incrementScoreP2By(1); // Default increment by 1
+        incrementScoreP2By(1);
     }
 
     public void incrementScoreP2By(int increment) {

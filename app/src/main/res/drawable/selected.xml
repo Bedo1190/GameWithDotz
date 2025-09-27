@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- White Oval Background -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFFFF"/>
+            <size android:width="52dp" android:height="52dp"/>
+        </shape>
+    </item>
+
+    <!-- Solid Black Tick Shape (like a triangle) -->
+    <item>
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:fillColor="#000000"
+                android:pathData="M6,12 L10,16 L18,6 L16,4 L10,12 L8,10 Z" />
+        </vector>
+    </item>
+
+    <!-- White V-Cut to simulate a checkmark -->
+    <item>
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:fillColor="#FFFFFFFF"
+                android:pathData="M8,10 L10,10 L16,1 L14.5,4.5 L10,10 L9,9 Z" />
+        </vector>
+    </item>
+
+</layer-list>

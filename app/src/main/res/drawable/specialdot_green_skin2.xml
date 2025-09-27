@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+
+            <!-- outer dark teal ring -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="#00000000"/>
+                    <stroke android:width="6dp" android:color="#0F4C3B"/>
+                    <size android:width="60dp" android:height="60dp"/>
+                </shape>
+            </item>
+
+            <!-- inner vivid teal ring -->
+            <item android:top="6dp" android:left="6dp" android:right="6dp" android:bottom="6dp">
+                <shape android:shape="oval">
+                    <solid android:color="#00000000"/>
+                    <stroke android:width="3dp" android:color="#1D8465"/>
+                    <size android:width="48dp" android:height="48dp"/>
+                </shape>
+            </item>
+
+            <!-- small solid white core -->
+            <item android:top="12dp" android:left="12dp" android:right="12dp" android:bottom="12dp">
+                <shape android:shape="oval">
+                    <solid android:color="#FFFFFFFF"/>
+                    <size android:width="36dp" android:height="36dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

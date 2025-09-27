@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+
+            <!-- outer white shell -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="#FFFFFFFF"/>
+                    <size android:width="52dp" android:height="52dp"/>
+                </shape>
+            </item>
+
+            <!-- inner silver center for a subtle focal point -->
+            <item android:top="12dp" android:left="12dp" android:right="12dp" android:bottom="12dp">
+                <shape android:shape="oval">
+                    <solid android:color="#FFD8D8D8"/>
+                    <size android:width="28dp" android:height="28dp"/>
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

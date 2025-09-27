@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+
+            <!-- outer soft shadow halo -->
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="#11000000"/> <!-- subtle shadow -->
+                    <size android:width="60dp" android:height="60dp"/>
+                </shape>
+            </item>
+
+            <!-- main white body inset -->
+            <item android:top="4dp" android:left="4dp" android:right="4dp" android:bottom="4dp">
+                <shape android:shape="oval">
+                    <solid android:color="#FFFFFFFF"/>
+                    <size android:width="52dp" android:height="52dp"/>
+                </shape>
+            </item>
+
+            <!-- tiny highlight for emboss -->
+            <item android:top="8dp" android:left="14dp" android:right="14dp" android:bottom="26dp">
+                <shape android:shape="oval">
+                    <solid android:color="#33FFFFFF"/>
+                    <size android:width="18dp" android:height="10dp"/>
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

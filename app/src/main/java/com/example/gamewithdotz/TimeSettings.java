@@ -25,7 +25,7 @@ public class TimeSettings extends Activity {
     private TextView timeGoal;
     private SeekBar time;
     int settedTime;
-    private int[] snapPoints = {30, 50, 70, 90, 110,}; // Example snap points
+    private int[] snapPoints = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}; // Example snap points
 
 
     @Override

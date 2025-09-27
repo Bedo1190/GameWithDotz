@@ -1,6 +1,7 @@
 package com.example.gamewithdotz;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -13,7 +14,7 @@ import androidx.core.content.ContextCompat;
 
 public class aDot extends View {
     private MediaPlayer mediaPlayer;
-
+    private final int MAX_VOLUME = 101;
     private Drawable dotDrawable;
     private GameWithDotz gameWithDotz;
     private UnlimitedGame unlimitedGame;
@@ -55,12 +56,21 @@ public class aDot extends View {
         dotDrawable = ContextCompat.getDrawable(context, R.drawable.dot); // Load dot drawable
         setBackground(dotDrawable); // Set dot drawable as the background
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences("SettingsPreferences", Context.MODE_PRIVATE);
+        int savedVolume = sharedPreferences.getInt("volume", 50); // Default to 50 if not set
+        final float volume;
+        if (savedVolume == 0) {
+            volume = 0;
+        } else {
+            volume = (float) (1 - (Math.log(MAX_VOLUME - savedVolume) / Math.log(MAX_VOLUME)));
+        }
         // Set click listener to remove DotView from parent
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create MediaPlayer instance to play the sound
                 mediaPlayer = MediaPlayer.create(getContext(), R.raw.videoplayback);
+                mediaPlayer.setVolume(volume, volume);
                 mediaPlayer.start();
 
                 // Handling the score increment and view removal

@@ -7,6 +7,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -98,6 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 // Save the volume to SharedPreferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("volume", volume);
                 editor.putInt("prevVolume", prevVolume);
                 editor.putBoolean("isMuted", isMuted);
                 editor.apply();
@@ -177,6 +179,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+    public void openCustomize(View v){
+        Intent i = new Intent(this, Customize.class);
+        startActivity(i);
+    }
+
     public void goBack(View v){
         finish();
     }
